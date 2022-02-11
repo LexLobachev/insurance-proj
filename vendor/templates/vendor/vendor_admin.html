@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Vendor admin{% endblock title %}
+
+{% block content %}
+<div class="features">
+    <h1 class="title">Vendor Admin | {{ vendor.name }}</h1>
+
+    <a href="{% url 'vendor:logout' %}" class="btn btn-danger">Log out</a>
+</div>
+
+<div class="features">
+    <h2 class="is-size-3 mb-4">My Products</h2>
+
+    <a class="btn btn btn-success" href="{% url 'vendor:add_product' %}" role="button">Add product</a>
+
+    {% if products %}
+
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">category</th>
+                <th scope="col">interest rate</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.category }}</td>
+                <td>${{ product.interest_rate }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <p class="has-text-danger">Products not added yet.</p>
+        {% endif %}
+</div>
+{% endblock %}

@@ -1,7 +1,34 @@
 {% extends 'core/base.html' %}
 
+{% block title %}Welcome | {% endblock %}
+
 {% block content %}
-    <div>
-        <h1>Home page</h1>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-6 offset-md-5">
+            <h2>Newest offers</h2>
+        </div>
     </div>
+    <br>
+    <div class="row justify-content-end">
+        {% for product in newest_products %}
+            <div class="card" style="width: 18rem;">
+<!--                <img class="card-img-top" src="{{ product.get_thumbnail }}" alt="Card image cap">-->
+                <img class="card-img-top" src="{{ product.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.vendor }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Category: {{ product.category }}</li>
+                    <li class="list-group-item">Interest rate: {{ product.interest_rate }}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="btn btn-outline-secondary">Go get it</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

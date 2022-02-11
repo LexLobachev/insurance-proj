@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+LOGIN_URL = 'vendor:login'
+LOGIN_REDIRECT_URL = 'vendor:vendor_admin'
+LOGOUT_REDIRECT_URL = 'core:home'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
-    'vendor'
+    'vendor',
+    'product'
 ]
 
 MIDDLEWARE = [
@@ -79,11 +86,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'insurancedb',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': os.getenv('POSTGRES_NAME', 'insurancedb'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432')
     }
 }
 
@@ -121,10 +128,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
+STATIC_URL = '/staticfiles/'
 STATICFILES_DIRS = [
-    BASE_DIR / "core/static"
+    BASE_DIR / "staticfiles"
 ]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

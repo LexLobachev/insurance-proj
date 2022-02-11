@@ -6,15 +6,19 @@
 
     <h1 class="title">Become Vendor</h1>
 
-    <form method="post" action="">
+    <form method="post" action=".">
         {% csrf_token %}
 
         {{ form.as_p }}
 
         <div class="field">
             <div class="control">
-                <button class="button is-dark is-uppercase">Sign Up</button>
+                <button type="button" class="btn btn-info">Sign Up</button>
             </div>
         </div>
     </form>
+
+    <h2 class="subtitle">Already have an account?</h2>
+
+    <a href="{% url 'vendor:login' %}">Log in</a>
 {% endblock content %}
