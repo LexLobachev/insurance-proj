@@ -14,6 +14,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - esearch
 
   db:
     image: postgres
@@ -22,3 +23,12 @@ services:
     restart: unless-stopped
     ports:
       - "8001:5432"
+
+  esearch:
+    container_name: search
+    image: elasticsearch:7.17.0
+    environment:
+      - discovery.type=single-node
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
