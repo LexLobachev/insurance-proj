@@ -1,6 +1,7 @@
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
+from main.settings import STATIC_URL
 
 from django.db import models
 from vendor.models import Vendor
@@ -38,12 +39,12 @@ class Product(models.Model):
 
     def get_thumbnail(self):
         if self.thumbnail:
-            return self.thumbnail.url
+            return f'{STATIC_URL}{self.thumbnail}'
         else:
             if self.image:
                 self.thumbnail = self.make_thumbnail(self.image)
                 self.save()
-                return self.thumbnail.url
+                return f'{STATIC_URL}{self.thumbnail}'
 
             else:
                 return 'https://via.placeholder.com/240x180.jpg'

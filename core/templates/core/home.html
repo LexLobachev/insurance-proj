@@ -14,8 +14,8 @@
     <div class="row justify-content-end">
         {% for product in newest_products %}
             <div class="card" style="width: 18rem;">
-<!--                <img class="card-img-top" src="{{ product.get_thumbnail }}" alt="Card image cap">-->
-                <img class="card-img-top" src="{{ product.image }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ product.get_thumbnail }}" alt="Card image cap">
+<!--                <img class="card-img-top" src="{{ product.image }}" alt="Card image cap">-->
                 <div class="card-body">
                     <h5 class="card-title">{{ product.vendor }}</h5>
                     <p class="card-text">{{ product.description }}</p>
