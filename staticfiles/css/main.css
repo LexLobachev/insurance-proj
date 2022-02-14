@@ -1,15 +1,15 @@
 body {
-    background: #b1acac;
+    background: #e0dbdb;
 }
 
 aside {
     float: left;
-    background: #e0dbdb;
+    background: #bbb6b6;
     width: 20%;
     padding: 2.5%;
     height: 100vh;
-    color: #fff;
-    border-right: 5px solid #bbb6b6;
+    color: #4e4949;
+    border-right: 5px solid #e0dbdb;
 }
 
 aside img {
@@ -41,7 +41,7 @@ aside ul li:hover, aside ul a:hover {
 
 main .features {
     float: left;
-    color: #fff;
+    color: #1d2f36;
     margin-top: 100px;
     text-align: center;
     width: 75%;
@@ -58,8 +58,8 @@ main .features p {max-width: 400px; margin: 20px auto}
     text-align: left;
 }
 
-form {
-    margin-left: 32%;
-    width: 500px;
-    margin-top: 50px;
-}
+/*form {*/
+/*    margin-left: 32%;*/
+/*    width: 500px;*/
+/*    margin-top: 50px;*/
+/*}*/
