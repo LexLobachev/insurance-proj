@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render
 from product.models import Product
+from product.documents import ProductDocument
 
 
 def homepage(request):
@@ -11,9 +12,13 @@ def homepage(request):
     # else:
     #     newest_products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query) | Q(interest_rate__icontains=query) | Q(category__icontains=query))
     # return render(request, 'core/home.html', {'newest_products': newest_products, 'query': query})
-    if 'query' in request.GET:
-        query = request.GET['query']
-        newest_products = Product.objects.filter(Q(interest_rate__icontains=query) | Q(description__icontains=query))
+    # if 'query' in request.GET:
+    #     query = request.GET['query']
+    #     newest_products = Product.objects.filter(Q(interest_rate__icontains=query) | Q(description__icontains=query))
+    query = request.GET.get('query')
+    if query:
+        newest_products = ProductDocument.search().query('multi_match', query=query,
+                                                         fileds=["interest_rate", "description"])
     else:
         newest_products = Product.objects.all()
     return render(request, 'core/home.html', {'newest_products': newest_products})
